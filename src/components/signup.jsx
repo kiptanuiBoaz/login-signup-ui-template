@@ -35,6 +35,7 @@ export const SignUp = () => {
       })
 
       console.log(res.data);
+      // console.log(formData)
 
     }
 
@@ -42,6 +43,10 @@ export const SignUp = () => {
 
       console.log(error);
       console.log(isLoading);
+    }
+
+    finally{
+      setIsLoading(false);
     }
 
   };
