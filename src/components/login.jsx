@@ -17,7 +17,7 @@ export  const Login = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    console.log(formData);
+    
     // ... submit to API or something
     logInUser();
   };
@@ -33,14 +33,20 @@ export  const Login = () => {
         data: formData,
        
       })
+     
 
-      console.log(res.data);
+      if(res.data.status === "ok" ){
+        alert("login successful");
+        window.localStorage.setItem("token",res.data.data);
+        window.location.href="/user-details"
+        console.log(res.data);
+      }
     }
 
     catch (error) {
 
       console.log(error);
-      console.log(isLoading);
+      
     }
 
     finally{
@@ -94,7 +100,7 @@ export  const Login = () => {
         </button>
       </div>
       <p className="forgot-password text-right">
-        Forgot <a href="#">password?</a>
+        Forgot <a href="">password?</a>
       </p>
     </form>
   )

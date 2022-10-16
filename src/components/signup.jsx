@@ -1,5 +1,6 @@
 import React from "react";
 import axios from "axios";
+import {Link} from "react-router-dom";
 
 export const SignUp = () => {
 
@@ -101,7 +102,7 @@ export const SignUp = () => {
           </button>
         </div>
         <p className="forgot-password text-right">
-          Already registered <a href="/sign-in">sign in?</a>
+          Already registered <Link to="/sign-in">sign in?</Link>
         </p>
       </form>
     )
