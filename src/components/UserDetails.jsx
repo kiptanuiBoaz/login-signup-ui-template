@@ -2,7 +2,7 @@ import axios from 'axios';
 import React from 'react';
 
 export const UserDetails = () => {
-   
+   const [userDetails, setUserDetails] = React.useState();
     
     const getUserDetails = async ()=>{
         try {
@@ -10,13 +10,14 @@ export const UserDetails = () => {
             const token =  window.localStorage.getItem("token");
             // console.log({token})
 
-            const res =  token && await axios({
+            const res =   await axios({
                 method: "post",
                 url: "http://localhost:5000/user-data",
-                data: JSON.stringify({token:token}),
+                data: {token},
             })
 
-            console.log(res.data.data);
+            // console.log(res.data.data);
+            setUserDetails(res.data.data);
            
 
         } catch (error) {
@@ -24,12 +25,13 @@ export const UserDetails = () => {
         } 
     }
 
-     getUserDetails();
+    getUserDetails();
+    //  console.log(userDetails);
 
   return (
     <div>
-        <h1>something something</h1>
-        <h1>something</h1>
+        Name:<h1>{userDetails.fname} </h1>
+        Email:<h1>{userDetails.email}</h1>
     </div>
   )
 }

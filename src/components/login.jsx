@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from "axios";
+import {Link} from "react-router-dom"
 
 export  const Login = () => {
 
@@ -100,7 +101,7 @@ export  const Login = () => {
         </button>
       </div>
       <p className="forgot-password text-right">
-        Forgot <a href="">password?</a>
+        Forgot <Link to={'/reset-password'}>password?</Link>
       </p>
     </form>
   )
