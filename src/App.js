@@ -7,6 +7,7 @@ import {Login} from './components/login';
 import {SignUp} from './components/signup';
 import {UserDetails} from './components/UserDetails';
 import { ForgotPasword } from './components/ForgotPasword';
+import {ResetPassword} from "./components/ResetPassword"
 
 function App() {
   return (
@@ -15,13 +16,13 @@ function App() {
         <nav className="navbar navbar-expand-lg navbar-light fixed-top">
           <div className="container">
             <Link className="navbar-brand" to={'/sign-in'}>
-              positronX
+              BrandName
             </Link>
             <div className="collapse navbar-collapse" id="navbarTogglerDemo02">
               <ul className="navbar-nav ml-auto">
                 <li className="nav-item">
                   <Link className="nav-link" to={'/sign-in'}>
-                    Login
+                    Sign in
                   </Link>
                 </li>
                 <li className="nav-item">
@@ -37,11 +38,11 @@ function App() {
         <div className="auth-wrapper">
           <div className="auth-inner">
             <Routes>
-              <Route exact path="/" element={<Login />} />
+              <Route exact path="/" element={<UserDetails />} />
               <Route path="/sign-in" element={<Login />} />
               <Route path="/sign-up" element={<SignUp />} />
-              <Route path="/user-details" element={<UserDetails />} />
-              <Route path ="/reset-password" element={<ForgotPasword />} />
+              <Route path ="/forgot-password" element={<ForgotPasword />} />
+              <Route path ="/reset-password" element = {<ResetPassword/>} />
             </Routes>
           </div>
         </div>

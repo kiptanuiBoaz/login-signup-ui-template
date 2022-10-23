@@ -23,6 +23,26 @@ span {
   font-family: "Fira Sans", sans-serif;
 }
 
+.success{
+  color: #4F8A10;
+  background-color: #DFF2BF;
+  background-image: url('https://i.imgur.com/Q9BGTuy.png');
+  background-repeat:no-repeat;
+  padding-left: 40px;
+  line-height: 30px;
+}
+
+.failed{
+  color: #D8000C;
+  background-color: #FFBABA;
+  background-image: url('https://i.imgur.com/GnyDvKN.png');
+  
+  background-repeat:no-repeat;
+  padding-left: 40px;
+  line-height: 30px;
+     
+}
+
 body,
 html,
 .App,

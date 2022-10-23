@@ -6,7 +6,9 @@ export const ForgotPasword = () => {
 
     const [formData, updateFormData] = React.useState();
     const [isLoading, setIsLoading] = React.useState(false);
-
+    const [emailFound, setEmailFound] = React.useState(true);
+    const [emailContact, setEmailContact] = React.useState();
+    isLoading&& console.log();
   const handleChange = (e) => {
     updateFormData({
       ...formData,
@@ -37,7 +39,8 @@ export const ForgotPasword = () => {
       })
      
 
-        console.log(res.data.status);
+      res.data.status === "user not found" && setEmailFound(false);
+      setEmailContact(res.data.email);
       
     }
 
@@ -57,6 +60,8 @@ export const ForgotPasword = () => {
     <div className='forgot-password'> 
         <div className="mb-3">
             <label>Email address</label>
+            {!emailFound && <p className='failed'>Not found! Please try another email</p>}
+            {emailFound && <p className='success'>{`A link has been sent to ${emailContact}`}</p>}
             <input
             type="email"
             className="form-control"

@@ -1,12 +1,14 @@
-import React from 'react';
+import React, {useState} from 'react';
 import axios from "axios";
 import {Link} from "react-router-dom"
 
 export  const Login = () => {
 
-  const [formData, updateFormData] = React.useState();
-  const [isLoading, setIsLoading] = React.useState(false);
+  const [formData, updateFormData] = useState();
+  const [isLoading, setIsLoading] = useState(false);
+  const [passwordError, setPasswordError] = useState(false);
 
+  isLoading&& console.log();
   const handleChange = (e) => {
     updateFormData({
       ...formData,
@@ -35,12 +37,19 @@ export  const Login = () => {
        
       })
      
-
+      console.log({res});
       if(res.data.status === "ok" ){
         alert("login successful");
-        window.localStorage.setItem("token",res.data.data);
-        window.location.href="/user-details"
-        console.log(res.data);
+        window.localStorage.setItem("token",res.data.data); 
+        window.localStorage.setItem("isLoggedIn",true)
+        window.location.href="/"
+        
+      }
+      else if (res.data.error === "invalid password"){
+        setPasswordError(true);
+      }
+      else{
+        console.error(res.data.status);
       }
     }
 
@@ -57,9 +66,17 @@ export  const Login = () => {
 
   }
 
+  //signing out function
+  const signOut = () =>{
+    window.localStorage.removeItem("token");
+    window.localStorage.removeItem("isLoggedIn")
+    window.location.href=("/")
+  }
+
   return (
     <form>
       <h3>Sign In</h3>
+      { passwordError && <p className='failed'>Incorrect password. Please try again, or click on forgot password to reset your password</p>}
 
       <div className="mb-3">
         <label>Email address</label>
@@ -101,7 +118,7 @@ export  const Login = () => {
         </button>
       </div>
       <p className="forgot-password text-right">
-        Forgot <Link to={'/reset-password'}>password?</Link>
+        Forgot <Link to={'/forgot-password'}>password?</Link>
       </p>
     </form>
   )
